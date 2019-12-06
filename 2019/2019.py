@@ -79,19 +79,70 @@ def day2():
 
                     k += 4
                 if code[0] == 19690720:
-                    print(i, j)
                     I = i
                     J = j
             except:
                 1+1
     print(I, J)
 
+def day3():
+    lineA = "R75,D30,R83,U83,L12,D49,R71,U7,L72".split(",")
+    lineB = "U62,R66,U55,R34,D71,R55,D58,R83".split(",")
+    
+    coordsA = {(0,0)}
+    coordsB = {(0,0)}
+    intersect = {(0,0)}
+    currX = 0
+    currY = 0
+    for i in lineA:
+        #add the coordinates of Line A to coords A 
+        dir = i[0]
+        dist = int(i.strip("LRDU"))
+        if dir == "R":
+            for j in range(dist):
+                currX += 1
+        elif dir == "L":
+            for j in range(dist):
+                currX -= 1
+        elif dir == "U":
+            for j in range(dist):
+                currY += 1
+        elif dir == "D":
+            for j in range(dist):
+                currY -= 1
+        coordsA.add((currX,currY))
+    #reset currXY for line B    
+    currX = 0
+    currY = 0
+    for i in lineB:
+        #Evaluate coords of line B and add intersections to intersect
+        dir = i[0]
+        dist = int(i.strip("LRDU"))
+        if dir == "R":
+            for j in range(dist):
+                currX += 1
+        elif dir == "L":
+            for j in range(dist):
+                currX -= 1
+        elif dir == "U":
+            for j in range(dist):
+                currY += 1
+        elif dir == "D":
+            for j in range(dist):
+                currY -= 1
+        coordsA.add((currX,currY))
+            
+    for coord in coordsA:
+        if coord in coordsB:
+            print(coord)
 
+    
 
 
 print("Day 1")
 day1()
 print("Day 2")
 day2()
-
+print("Day3")
+day3()
 
