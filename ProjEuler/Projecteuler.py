@@ -86,4 +86,32 @@ def problem31():
     print(s)
 
 
+# Problem 37
+# Truncate left & right functions
+
+def trunc(num, dir=0):
+    # takes a number, converts to string
+    # if dir = 0: returns num[1:]
+    # if dir = 1: returns num[:-2]
+    k = str(num)
+    if len(k) == 1:
+        return k
+    if dir == 0:
+        return k[1:]
+    return k[:-2]
+
+def testP(num):
+    if not isPrime(num):
+        return 0
+    print(num)
+    return isPrime(int(trunc(num))) and isPrime(int(trunc(num, 1)))
+
+
+def problem37():
+    primes = []
+    for i in range(10,1000):
+        # check if the number is prime, then trunctate until false 
+        if isPrime(i):
+            print(testP(i))
     
+problem37()
