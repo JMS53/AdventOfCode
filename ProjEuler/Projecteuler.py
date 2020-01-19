@@ -92,20 +92,26 @@ def problem31():
 def trunc(num, dir=0):
     # takes a number, converts to string
     # if dir = 0: returns num[1:]
-    # if dir = 1: returns num[:-2]
+    # if dir = 1: returns num[:-1]
     k = str(num)
     if len(k) == 1:
         return k
     if dir == 0:
         return k[1:]
-    return k[:-2]
+    return k[:-1]
 
 def testP(num):
-    if not isPrime(num):
+    k = num
+    print(k)
+    if (isPrime(k) == False):
         return 0
-    print(num)
-    return isPrime(int(trunc(num))) and isPrime(int(trunc(num, 1)))
+    if (k > 9):
+        j = int(trunc(k))
+        i = int(trunc(k, 1))
+        return testP(i) and testP(j)
+    return isPrime(num)
 
+print(testP(3797))
 
 def problem37():
     primes = []
@@ -114,4 +120,4 @@ def problem37():
         if isPrime(i):
             print(testP(i))
     
-problem37()
+#problem37()
